@@ -3,8 +3,10 @@ import * as Rx from 'rx';
 import * as RxDom from 'rx-dom';
 
 const dom = RxDom.DOM;
-
-export default class Hello extends React.Component<{}, {}> {
+interface HelloProps {
+    value: any;
+}
+export default class Hello extends React.Component<HelloProps, {}> {
     compositeDisposable:Rx.CompositeDisposable;
 
     constructor() {
@@ -25,6 +27,7 @@ export default class Hello extends React.Component<{}, {}> {
     }
 
     render() {
-        return (<h1>Hello, Typescripters!</h1>);
+        const {props} = this;
+        return (<h1>{props.value.get('text')}</h1>);
     }
 }
